@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects - Full-Stack Developer</title>
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #1a1a1a;
+      --bg-tertiary: #252525;
+      
+      --green: #10b981;
+      --green-light: #34d399;
+      --pink: #ec4899;
+      --pink-light: #f472b6;
+      --blue: #3b82f6;
+      --blue-light: #60a5fa;
+      --purple: #8b5cf6;
+      --orange: #f97316;
+      
+      --text-primary: #ffffff;
+      --text-secondary: #9ca3af;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    h1, h2, h3 {
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    /* Navigation */
+    nav {
+      background: var(--bg-secondary);
+      border-bottom: 2px solid var(--bg-tertiary);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 20px 0;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--green);
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* Page Header */
+    .page-header {
+      padding: 100px 0 60px;
+      text-align: center;
+    }
+
+    .page-header h1 {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, var(--green), var(--pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .page-header p {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Projects Section */
+    .projects-section {
+      padding: 60px 0 100px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+      gap: 40px;
+    }
+
+    .project-card {
+      background: var(--bg-secondary);
+      border: 2px solid transparent;
+      border-radius: 4px;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+
+    .project-card:hover {
+      border-color: var(--green);
+      transform: translateY(-8px);
+      box-shadow: 10px 10px 0px rgba(16, 185, 129, 0.3);
+    }
+
+    .project-card:nth-child(2):hover {
+      border-color: var(--pink);
+      box-shadow: 10px 10px 0px rgba(236, 72, 153, 0.3);
+    }
+
+    .project-card:nth-child(3):hover {
+      border-color: var(--blue);
+      box-shadow: 10px 10px 0px rgba(59, 130, 246, 0.3);
+    }
+
+    .project-card:nth-child(4):hover {
+      border-color: var(--purple);
+      box-shadow: 10px 10px 0px rgba(139, 92, 246, 0.3);
+    }
+
+    .project-card:nth-child(5):hover {
+      border-color: var(--orange);
+      box-shadow: 10px 10px 0px rgba(249, 115, 22, 0.3);
+    }
+
+    .project-image {
+      width: 100%;
+      height: 280px;
+      background: linear-gradient(135deg, var(--green), var(--blue));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      font-weight: 900;
+      color: rgba(255, 255, 255, 0.2);
+    }
+
+    .project-card:nth-child(2) .project-image {
+      background: linear-gradient(135deg, var(--pink), var(--purple));
+    }
+
+    .project-card:nth-child(3) .project-image {
+      background: linear-gradient(135deg, var(--blue), var(--green));
+    }
+
+    .project-card:nth-child(4) .project-image {
+      background: linear-gradient(135deg, var(--purple), var(--pink));
+    }
+
+    .project-card:nth-child(5) .project-image {
+      background: linear-gradient(135deg, var(--orange), var(--pink));
+    }
+
+    .project-content {
+      padding: 32px;
+    }
+
+    .project-title {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+      color: var(--green);
+      text-transform: uppercase;
+    }
+
+    .project-card:nth-child(2) .project-title { color: var(--pink); }
+    .project-card:nth-child(3) .project-title { color: var(--blue); }
+    .project-card:nth-child(4) .project-title { color: var(--purple); }
+    .project-card:nth-child(5) .project-title { color: var(--orange); }
+
+    .project-description {
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    .project-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .tag {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid var(--green);
+      padding: 6px 14px;
+      border-radius: 3px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--green);
+      text-transform: uppercase;
+    }
+
+    .project-card:nth-child(2) .tag {
+      background: rgba(236, 72, 153, 0.1);
+      border-color: var(--pink);
+      color: var(--pink);
+    }
+
+    .project-card:nth-child(3) .tag {
+      background: rgba(59, 130, 246, 0.1);
+      border-color: var(--blue);
+      color: var(--blue);
+    }
+
+    .project-card:nth-child(4) .tag {
+      background: rgba(139, 92, 246, 0.1);
+      border-color: var(--purple);
+      color: var(--purple);
+    }
+
+    .project-card:nth-child(5) .tag {
+      background: rgba(249, 115, 22, 0.1);
+      border-color: var(--orange);
+      color: var(--orange);
+    }
+
+    .project-features {
+      list-style: none;
+      margin-bottom: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--bg-tertiary);
+    }
+
+    .project-features li {
+      padding: 8px 0;
+      color: var(--text-secondary);
+      position: relative;
+      padding-left: 24px;
+    }
+
+    .project-features li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--green);
+      font-weight: bold;
+    }
+
+    .project-card:nth-child(2) .project-features li:before { color: var(--pink); }
+    .project-card:nth-child(3) .project-features li:before { color: var(--blue); }
+    .project-card:nth-child(4) .project-features li:before { color: var(--purple); }
+    .project-card:nth-child(5) .project-features li:before { color: var(--orange); }
+
+    /* Footer */
+    footer {
+      background: var(--bg-secondary);
+      padding: 40px 0;
+      text-align: center;
+      border-top: 2px solid var(--bg-tertiary);
+    }
+
+    footer p {
+      color: var(--text-secondary);
+    }
+
+    @media (max-width: 768px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .page-header h1 {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo">YOUR<span style="color: #ec4899;">NAME</span></div>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/services">Services</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header container">
+    <h1>MY PROJECTS</h1>
+    <p>
+      A showcase of real-world applications I've built for clients and startups. 
+      Each project demonstrates expertise in full-stack development.
+    </p>
+  </section>
+
+  <!-- Projects Grid -->
+  <section class="projects-section container">
+    <div class="projects-grid">
+      
+      <!-- Project 1: EduPath/Unipick -->
+      <div class="project-card">
+        <div class="project-image">EP</div>
+        <div class="project-content">
+          <h3 class="project-title">EduPath / Unipick</h3>
+          <p class="project-description">
+            Admission consulting platform connecting students with universities. 
+            Features application management, document uploads, and counselor matching.
+          </p>
+          
+          <div class="project-tags">
+            <span class="tag">Node.js</span>
+            <span class="tag">Express</span>
+            <span class="tag">MongoDB</span>
+            <span class="tag">EJS</span>
+          </div>
+          
+          <ul class="project-features">
+            <li>Student & counselor dashboards</li>
+            <li>Application tracking system</li>
+            <li>Document management</li>
+            <li>University database integration</li>
+            <li>Payment gateway (Razorpay)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Project 2: ShardCloud -->
+      <div class="project-card">
+        <div class="project-image">SC</div>
+        <div class="project-content">
+          <h3 class="project-title">ShardCloud</h3>
+          <p class="project-description">
+            Decentralized cloud storage system with distributed file chunks. 
+            Secure, encrypted storage with advanced file management.
+          </p>
+          
+          <div class="project-tags">
+            <span class="tag">Node.js</span>
+            <span class="tag">Encryption</span>
+            <span class="tag">MongoDB</span>
+            <span class="tag">File System</span>
+          </div>
+          
+          <ul class="project-features">
+            <li>Distributed storage architecture</li>
+            <li>File chunking & encryption</li>
+            <li>Load balancing algorithms</li>
+            <li>User quota management</li>
+            <li>Secure file sharing</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Project 3: SvetGrid -->
+      <div class="project-card">
+        <div class="project-image">SG</div>
+        <div class="project-content">
+          <h3 class="project-title">SvetGrid</h3>
+          <p class="project-description">
+            Smart billboard advertising platform for outdoor advertising management. 
+            Campaign scheduling and analytics dashboard.
+          </p>
+          
+          <div class="project-tags">
+            <span class="tag">Node.js</span>
+            <span class="tag">React</span>
+            <span class="tag">MongoDB</span>
+            <span class="tag">Analytics</span>
+          </div>
+          
+          <ul class="project-features">
+            <li>Billboard inventory management</li>
+            <li>Campaign scheduling system</li>
+            <li>Real-time pricing calculator</li>
+            <li>Client & advertiser portals</li>
+            <li>Payment integration</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Project 4: Unmask -->
+      <div class="project-card">
+        <div class="project-image">UM</div>
+        <div class="project-content">
+          <h3 class="project-title">Unmask</h3>
+          <p class="project-description">
+            Anonymous chat application with identity-hiding features. 
+            Real-time messaging with Socket.io and privacy-focused design.
+          </p>
+          
+          <div class="project-tags">
+            <span class="tag">Socket.io</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">Real-time</span>
+            <span class="tag">MongoDB</span>
+          </div>
+          
+          <ul class="project-features">
+            <li>Real-time anonymous chat</li>
+            <li>Identity masking system</li>
+            <li>Room-based conversations</li>
+            <li>Message encryption</li>
+            <li>User presence tracking</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Project 5: Event Booking Platform -->
+      <div class="project-card">
+        <div class="project-image">EB</div>
+        <div class="project-content">
+          <h3 class="project-title">Event Booking System</h3>
+          <p class="project-description">
+            Hall management and event booking platform. Complete booking workflow 
+            with calendar integration and payment processing.
+          </p>
+          
+          <div class="project-tags">
+            <span class="tag">Node.js</span>
+            <span class="tag">Express</span>
+            <span class="tag">Razorpay</span>
+            <span class="tag">MongoDB</span>
+          </div>
+          
+          <ul class="project-features">
+            <li>Hall availability calendar</li>
+            <li>Booking management system</li>
+            <li>Payment gateway integration</li>
+            <li>Invoice generation</li>
+            <li>Email notifications</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Project 6: Furniture E-commerce -->
+      <div class="project-card">
+        <div class="project-image">FE</div>
+        <div class="project-content">
+          <h3 class="project-title">Furniture E-commerce</h3>
+          <p class="project-description">
+            Full-featured e-commerce website for furniture business. 
+            Product catalog, cart, checkout, and order management.
+          </p>
+          
+          <div class="project-tags">
+            <span class="tag">MERN Stack</span>
+            <span class="tag">Razorpay</span>
+            <span class="tag">Admin Panel</span>
+          </div>
+          
+          <ul class="project-features">
+            <li>Product catalog & search</li>
+            <li>Shopping cart functionality</li>
+            <li>Secure checkout process</li>
+            <li>Order tracking system</li>
+            <li>Admin dashboard</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Your Name. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

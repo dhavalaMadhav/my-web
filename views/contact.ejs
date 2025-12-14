@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - Full-Stack Developer</title>
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #1a1a1a;
+      --bg-tertiary: #252525;
+      
+      --green: #10b981;
+      --green-light: #34d399;
+      --pink: #ec4899;
+      --pink-light: #f472b6;
+      --blue: #3b82f6;
+      --blue-light: #60a5fa;
+      
+      --text-primary: #ffffff;
+      --text-secondary: #9ca3af;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    h1, h2, h3 {
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    /* Navigation */
+    nav {
+      background: var(--bg-secondary);
+      border-bottom: 2px solid var(--bg-tertiary);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 20px 0;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--green);
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* Page Header */
+    .page-header {
+      padding: 100px 0 60px;
+      text-align: center;
+    }
+
+    .page-header h1 {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, var(--green), var(--blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .page-header p {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      padding: 60px 0 100px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+    }
+
+    /* Contact Info */
+    .contact-info h2 {
+      font-size: 2rem;
+      margin-bottom: 24px;
+      color: var(--green);
+      text-transform: uppercase;
+    }
+
+    .contact-info p {
+      color: var(--text-secondary);
+      margin-bottom: 40px;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    .info-item {
+      background: var(--bg-secondary);
+      padding: 24px;
+      margin-bottom: 20px;
+      border-left: 4px solid var(--green);
+      box-shadow: 6px 6px 0px rgba(16, 185, 129, 0.2);
+      transition: all 0.3s;
+    }
+
+    .info-item:hover {
+      transform: translateX(4px);
+    }
+
+    .info-item:nth-child(3) {
+      border-left-color: var(--pink);
+      box-shadow: 6px 6px 0px rgba(236, 72, 153, 0.2);
+    }
+
+    .info-item:nth-child(4) {
+      border-left-color: var(--blue);
+      box-shadow: 6px 6px 0px rgba(59, 130, 246, 0.2);
+    }
+
+    .info-label {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .info-value {
+      font-size: 1.2rem;
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .info-value a {
+      color: var(--green);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .info-value a:hover {
+      color: var(--green-light);
+    }
+
+    /* Contact Form */
+    .contact-form {
+      background: var(--bg-secondary);
+      padding: 48px;
+      border: 2px solid var(--bg-tertiary);
+      box-shadow: 10px 10px 0px rgba(16, 185, 129, 0.2);
+    }
+
+    .contact-form h2 {
+      font-size: 2rem;
+      margin-bottom: 32px;
+      color: var(--green);
+      text-transform: uppercase;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 16px;
+      background: var(--bg-primary);
+      border: 2px solid var(--bg-tertiary);
+      border-radius: 4px;
+      color: var(--text-primary);
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.3s;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+    }
+
+    textarea.form-control {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .btn {
+      padding: 16px 40px;
+      border: none;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      display: inline-block;
+      width: 100%;
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: var(--bg-primary);
+      box-shadow: 8px 8px 0px var(--green-light);
+    }
+
+    .btn-primary:hover {
+      transform: translate(2px, 2px);
+      box-shadow: 6px 6px 0px var(--green-light);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .success-message {
+      background: rgba(16, 185, 129, 0.1);
+      border: 2px solid var(--green);
+      padding: 16px;
+      border-radius: 4px;
+      color: var(--green);
+      margin-top: 20px;
+      text-align: center;
+      font-weight: 600;
+      display: none;
+    }
+
+    .error-message {
+      background: rgba(239, 68, 68, 0.1);
+      border: 2px solid #ef4444;
+      padding: 16px;
+      border-radius: 4px;
+      color: #ef4444;
+      margin-top: 20px;
+      text-align: center;
+      font-weight: 600;
+      display: none;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--bg-secondary);
+      padding: 40px 0;
+      text-align: center;
+      border-top: 2px solid var(--bg-tertiary);
+    }
+
+    footer p {
+      color: var(--text-secondary);
+    }
+
+    @media (max-width: 968px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .page-header h1 {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo">YOUR<span style="color: #ec4899;">NAME</span></div>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/services">Services</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header container">
+    <h1>GET IN TOUCH</h1>
+    <p>
+      Let's discuss your project requirements. I'm available for freelance work 
+      and excited to collaborate on your next big idea.
+    </p>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-section container">
+    <div class="contact-grid">
+      
+      <!-- Contact Info -->
+      <div class="contact-info">
+        <h2>Contact Information</h2>
+        <p>
+          Feel free to reach out via email, phone, or fill out the contact form. 
+          I typically respond within 24 hours.
+        </p>
+        
+        <div class="info-item">
+          <div class="info-label">Email</div>
+          <div class="info-value">
+            <a href="mailto:your.email@example.com">your.email@example.com</a>
+          </div>
+        </div>
+        
+        <div class="info-item">
+          <div class="info-label">Phone</div>
+          <div class="info-value">
+            <a href="tel:+919876543210">+91 98765 43210</a>
+          </div>
+        </div>
+        
+        <div class="info-item">
+          <div class="info-label">Location</div>
+          <div class="info-value">Visakhapatnam, Andhra Pradesh, India</div>
+        </div>
+        
+        <div class="info-item">
+          <div class="info-label">LinkedIn</div>
+          <div class="info-value">
+            <a href="https://linkedin.com/in/yourprofile" target="_blank">
+              linkedin.com/in/yourprofile
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="contact-form">
+        <h2>Send a Message</h2>
+        
+        <form id="contactForm">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" class="form-control" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Your Email</label>
+            <input type="email" id="email" name="email" class="form-control" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" class="form-control" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" class="form-control" required></textarea>
+          </div>
+          
+          <button type="submit" class="btn btn-primary" id="submitBtn">
+            Send Message
+          </button>
+          
+          <div class="success-message" id="successMessage">
+            ✓ Message sent successfully! I'll get back to you soon.
+          </div>
+          
+          <div class="error-message" id="errorMessage">
+            ✗ Something went wrong. Please try again.
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Your Name. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Contact Form Submission
+    document.getElementById('contactForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const submitBtn = document.getElementById('submitBtn');
+      const successMessage = document.getElementById('successMessage');
+      const errorMessage = document.getElementById('errorMessage');
+      
+      // Hide previous messages
+      successMessage.style.display = 'none';
+      errorMessage.style.display = 'none';
+      
+      // Disable button
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+      
+      const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        subject: document.getElementById('subject').value,
+        message: document.getElementById('message').value
+      };
+      
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+          successMessage.style.display = 'block';
+          document.getElementById('contactForm').reset();
+        } else {
+          errorMessage.style.display = 'block';
+        }
+      } catch (error) {
+        console.error('Contact form error:', error);
+        errorMessage.style.display = 'block';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Message';
+      }
+    });
+  </script>
+</body>
+</html>

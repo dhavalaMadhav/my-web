@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services - Full-Stack Developer</title>
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #1a1a1a;
+      --bg-tertiary: #252525;
+      
+      --green: #10b981;
+      --green-light: #34d399;
+      --pink: #ec4899;
+      --pink-light: #f472b6;
+      --blue: #3b82f6;
+      --blue-light: #60a5fa;
+      --purple: #8b5cf6;
+      
+      --text-primary: #ffffff;
+      --text-secondary: #9ca3af;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    h1, h2, h3 {
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    /* Navigation */
+    nav {
+      background: var(--bg-secondary);
+      border-bottom: 2px solid var(--bg-tertiary);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 20px 0;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--green);
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* Page Header */
+    .page-header {
+      padding: 100px 0 60px;
+      text-align: center;
+    }
+
+    .page-header h1 {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, var(--green), var(--blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .page-header p {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Services Grid */
+    .services-section {
+      padding: 60px 0 100px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 40px;
+    }
+
+    .service-card {
+      background: var(--bg-secondary);
+      border-left: 4px solid var(--green);
+      padding: 48px;
+      box-shadow: 8px 8px 0px rgba(16, 185, 129, 0.3);
+      transition: all 0.3s;
+    }
+
+    .service-card:nth-child(2) {
+      border-left-color: var(--pink);
+      box-shadow: 8px 8px 0px rgba(236, 72, 153, 0.3);
+    }
+
+    .service-card:nth-child(3) {
+      border-left-color: var(--blue);
+      box-shadow: 8px 8px 0px rgba(59, 130, 246, 0.3);
+    }
+
+    .service-card:nth-child(4) {
+      border-left-color: var(--purple);
+      box-shadow: 8px 8px 0px rgba(139, 92, 246, 0.3);
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .service-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+      color: var(--green);
+      text-transform: uppercase;
+    }
+
+    .service-card:nth-child(2) h3 { color: var(--pink); }
+    .service-card:nth-child(3) h3 { color: var(--blue); }
+    .service-card:nth-child(4) h3 { color: var(--purple); }
+
+    .service-description {
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+      font-size: 1.1rem;
+    }
+
+    .features-list {
+      list-style: none;
+      margin-bottom: 32px;
+    }
+
+    .features-list li {
+      padding: 10px 0;
+      color: var(--text-secondary);
+      position: relative;
+      padding-left: 28px;
+      font-size: 1rem;
+    }
+
+    .features-list li:before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: var(--green);
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .service-card:nth-child(2) .features-list li:before { color: var(--pink); }
+    .service-card:nth-child(3) .features-list li:before { color: var(--blue); }
+    .service-card:nth-child(4) .features-list li:before { color: var(--purple); }
+
+    .price-section {
+      border-top: 2px solid var(--bg-tertiary);
+      padding-top: 24px;
+      margin-top: 24px;
+    }
+
+    .price {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--green);
+      margin-bottom: 8px;
+    }
+
+    .service-card:nth-child(2) .price { color: var(--pink); }
+    .service-card:nth-child(3) .price { color: var(--blue); }
+    .service-card:nth-child(4) .price { color: var(--purple); }
+
+    .price-note {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: 24px;
+    }
+
+    .btn {
+      padding: 14px 32px;
+      border: none;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      display: inline-block;
+      text-decoration: none;
+      width: 100%;
+      text-align: center;
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: var(--bg-primary);
+      box-shadow: 6px 6px 0px var(--green-light);
+    }
+
+    .btn-primary:hover {
+      transform: translate(2px, 2px);
+      box-shadow: 4px 4px 0px var(--green-light);
+    }
+
+    .service-card:nth-child(2) .btn-primary {
+      background: var(--pink);
+      box-shadow: 6px 6px 0px var(--pink-light);
+    }
+
+    .service-card:nth-child(2) .btn-primary:hover {
+      box-shadow: 4px 4px 0px var(--pink-light);
+    }
+
+    .service-card:nth-child(3) .btn-primary {
+      background: var(--blue);
+      box-shadow: 6px 6px 0px var(--blue-light);
+    }
+
+    .service-card:nth-child(3) .btn-primary:hover {
+      box-shadow: 4px 4px 0px var(--blue-light);
+    }
+
+    .service-card:nth-child(4) .btn-primary {
+      background: var(--purple);
+      box-shadow: 6px 6px 0px #a78bfa;
+    }
+
+    .service-card:nth-child(4) .btn-primary:hover {
+      box-shadow: 4px 4px 0px #a78bfa;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--bg-secondary);
+      padding: 40px 0;
+      text-align: center;
+      border-top: 2px solid var(--bg-tertiary);
+    }
+
+    footer p {
+      color: var(--text-secondary);
+    }
+
+    @media (max-width: 768px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .page-header h1 {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+  
+  <!-- Razorpay Checkout Script -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo">YOUR<span style="color: #ec4899;">NAME</span></div>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/services">Services</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header container">
+    <h1>MY SERVICES</h1>
+    <p>
+      Professional web development services tailored to your needs. 
+      Choose a service and make secure payment via Razorpay.
+    </p>
+  </section>
+
+  <!-- Services Grid -->
+  <section class="services-section container">
+    <div class="services-grid">
+      
+      <!-- Service 1 -->
+      <div class="service-card">
+        <h3>Full-Stack Web Application</h3>
+        <p class="service-description">
+          Complete web application built with Node.js, Express, MongoDB, and React/EJS. 
+          Perfect for startups and businesses.
+        </p>
+        
+        <ul class="features-list">
+          <li>Custom backend API with Express.js</li>
+          <li>MongoDB database design & optimization</li>
+          <li>Responsive frontend (React or EJS)</li>
+          <li>User authentication & authorization</li>
+          <li>RESTful API development</li>
+          <li>Deployment & hosting setup</li>
+          <li>30 days post-launch support</li>
+        </ul>
+        
+        <div class="price-section">
+          <div class="price">₹25,000</div>
+          <p class="price-note">Starting price - varies by complexity</p>
+          <button class="btn btn-primary" onclick="initiatePayment(25000, 'Full-Stack Web Application')">
+            Pay Now
+          </button>
+        </div>
+      </div>
+
+      <!-- Service 2 -->
+      <div class="service-card">
+        <h3>Real-Time Features</h3>
+        <p class="service-description">
+          Add Socket.io powered real-time functionality to your existing application 
+          or build new chat/notification systems.
+        </p>
+        
+        <ul class="features-list">
+          <li>Socket.io integration</li>
+          <li>Real-time chat system</li>
+          <li>Live notifications</li>
+          <li>User presence tracking</li>
+          <li>Message persistence</li>
+          <li>File sharing capability</li>
+          <li>Mobile-responsive design</li>
+        </ul>
+        
+        <div class="price-section">
+          <div class="price">₹15,000</div>
+          <p class="price-note">Add-on or standalone service</p>
+          <button class="btn btn-primary" onclick="initiatePayment(15000, 'Real-Time Features')">
+            Pay Now
+          </button>
+        </div>
+      </div>
+
+      <!-- Service 3 -->
+      <div class="service-card">
+        <h3>Payment Gateway Integration</h3>
+        <p class="service-description">
+          Secure Razorpay payment integration with complete order management 
+          and transaction tracking.
+        </p>
+        
+        <ul class="features-list">
+          <li>Razorpay integration setup</li>
+          <li>Payment verification system</li>
+          <li>Order management dashboard</li>
+          <li>Invoice generation</li>
+          <li>Refund handling</li>
+          <li>Payment webhooks</li>
+          <li>Transaction history</li>
+        </ul>
+        
+        <div class="price-section">
+          <div class="price">₹10,000</div>
+          <p class="price-note">Complete integration package</p>
+          <button class="btn btn-primary" onclick="initiatePayment(10000, 'Payment Gateway Integration')">
+            Pay Now
+          </button>
+        </div>
+      </div>
+
+      <!-- Service 4 -->
+      <div class="service-card">
+        <h3>Custom API Development</h3>
+        <p class="service-description">
+          Build robust RESTful APIs for your mobile app, web app, or 
+          third-party integrations.
+        </p>
+        
+        <ul class="features-list">
+          <li>RESTful API architecture</li>
+          <li>JWT authentication</li>
+          <li>Rate limiting & security</li>
+          <li>API documentation</li>
+          <li>Database optimization</li>
+          <li>Error handling</li>
+          <li>Testing & deployment</li>
+        </ul>
+        
+        <div class="price-section">
+          <div class="price">₹12,000</div>
+          <p class="price-note">Based on endpoints & complexity</p>
+          <button class="btn btn-primary" onclick="initiatePayment(12000, 'Custom API Development')">
+            Pay Now
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Your Name. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Razorpay Payment Integration
+    async function initiatePayment(amount, serviceName) {
+      // Get client details
+      const clientName = prompt('Enter your name:');
+      if (!clientName) return;
+      
+      const clientEmail = prompt('Enter your email:');
+      if (!clientEmail) return;
+
+      try {
+        // Create order
+        const response = await fetch('/api/payment/create-order', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            amount: amount,
+            serviceName: serviceName,
+            clientName: clientName,
+            clientEmail: clientEmail
+          })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          // Initialize Razorpay
+          const options = {
+            key: data.key,
+            amount: data.order.amount,
+            currency: data.order.currency,
+            name: 'Your Name - Freelance Services',
+            description: serviceName,
+            order_id: data.order.id,
+            prefill: {
+              name: clientName,
+              email: clientEmail
+            },
+            theme: {
+              color: '#10b981'
+            },
+            handler: async function(response) {
+              // Verify payment
+              const verifyResponse = await fetch('/api/payment/verify-payment', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                  razorpay_order_id: response.razorpay_order_id,
+                  razorpay_payment_id: response.razorpay_payment_id,
+                  razorpay_signature: response.razorpay_signature
+                })
+              });
+
+              const verifyData = await verifyResponse.json();
+
+              if (verifyData.success) {
+                alert('✅ Payment Successful! I will contact you soon via email.');
+                window.location.href = '/contact';
+              } else {
+                alert('❌ Payment verification failed. Please contact support.');
+              }
+            },
+            modal: {
+              ondismiss: function() {
+                alert('Payment cancelled');
+              }
+            }
+          };
+
+          const rzp = new Razorpay(options);
+          rzp.open();
+        } else {
+          alert('Failed to create order. Please try again.');
+        }
+      } catch (error) {
+        console.error('Payment error:', error);
+        alert('An error occurred. Please try again.');
+      }
+    }
+  </script>
+</body>
+</html>

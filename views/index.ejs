@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Full-Stack Developer | Node.js & MERN Expert</title>
+  
+  <style>
+    /* Swiss Design - Dark Theme */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #1a1a1a;
+      --bg-tertiary: #252525;
+      
+      --green: #10b981;
+      --green-light: #34d399;
+      --pink: #ec4899;
+      --pink-light: #f472b6;
+      --blue: #3b82f6;
+      --blue-light: #60a5fa;
+      --purple: #8b5cf6;
+      --orange: #f97316;
+      
+      --text-primary: #ffffff;
+      --text-secondary: #9ca3af;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3 {
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    h1 { font-size: 4rem; }
+    h2 { font-size: 2.5rem; }
+    h3 { font-size: 1.5rem; }
+
+    /* Navigation */
+    nav {
+      background: var(--bg-secondary);
+      border-bottom: 2px solid var(--bg-tertiary);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 20px 0;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -0.05em;
+      color: var(--green);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-links a:hover {
+      color: var(--green);
+    }
+
+    /* Container */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      padding: 80px 0;
+    }
+
+    .hero-content {
+      max-width: 800px;
+    }
+
+    .hero h1 {
+      font-size: 5rem;
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, var(--green), var(--blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      color: var(--text-secondary);
+      margin-bottom: 40px;
+      line-height: 1.8;
+    }
+
+    .tech-stack {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .tech-badge {
+      background: rgba(16, 185, 129, 0.1);
+      border: 2px solid var(--green);
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--green);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Buttons */
+    .btn {
+      padding: 16px 40px;
+      border: none;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: var(--bg-primary);
+      box-shadow: 8px 8px 0px var(--green-light);
+    }
+
+    .btn-primary:hover {
+      transform: translate(2px, 2px);
+      box-shadow: 6px 6px 0px var(--green-light);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 2px solid var(--green);
+      color: var(--green);
+      box-shadow: 6px 6px 0px rgba(16, 185, 129, 0.3);
+      margin-left: 16px;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(16, 185, 129, 0.1);
+      transform: translate(2px, 2px);
+      box-shadow: 4px 4px 0px rgba(16, 185, 129, 0.3);
+    }
+
+    /* About Section */
+    .about {
+      padding: 100px 0;
+      background: var(--bg-secondary);
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .about-content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .about-content p {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+      line-height: 1.8;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+      margin-top: 60px;
+    }
+
+    .stat-box {
+      text-align: center;
+      padding: 32px;
+      background: var(--bg-primary);
+      border-left: 4px solid var(--green);
+      box-shadow: 6px 6px 0px rgba(16, 185, 129, 0.3);
+    }
+
+    .stat-box:nth-child(2) {
+      border-left-color: var(--pink);
+      box-shadow: 6px 6px 0px rgba(236, 72, 153, 0.3);
+    }
+
+    .stat-box:nth-child(3) {
+      border-left-color: var(--blue);
+      box-shadow: 6px 6px 0px rgba(59, 130, 246, 0.3);
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--green);
+      margin-bottom: 8px;
+    }
+
+    .stat-box:nth-child(2) .stat-number { color: var(--pink); }
+    .stat-box:nth-child(3) .stat-number { color: var(--blue); }
+
+    .stat-label {
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+    }
+
+    /* Quick Services Preview */
+    .quick-services {
+      padding: 100px 0;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 32px;
+    }
+
+    .service-card {
+      background: var(--bg-secondary);
+      border-left: 4px solid var(--green);
+      padding: 40px;
+      box-shadow: 6px 6px 0px rgba(16, 185, 129, 0.3);
+      transition: all 0.3s;
+    }
+
+    .service-card:nth-child(2) {
+      border-left-color: var(--pink);
+      box-shadow: 6px 6px 0px rgba(236, 72, 153, 0.3);
+    }
+
+    .service-card:nth-child(3) {
+      border-left-color: var(--blue);
+      box-shadow: 6px 6px 0px rgba(59, 130, 246, 0.3);
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .service-card h3 {
+      margin-bottom: 16px;
+      color: var(--green);
+    }
+
+    .service-card:nth-child(2) h3 { color: var(--pink); }
+    .service-card:nth-child(3) h3 { color: var(--blue); }
+
+    .service-card p {
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+    }
+
+    .price {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--green);
+      margin-top: 24px;
+    }
+
+    .service-card:nth-child(2) .price { color: var(--pink); }
+    .service-card:nth-child(3) .price { color: var(--blue); }
+
+    /* CTA Section */
+    .cta {
+      padding: 100px 0;
+      background: var(--bg-secondary);
+      text-align: center;
+    }
+
+    .cta-box {
+      background: rgba(139, 92, 246, 0.1);
+      border: 2px solid var(--purple);
+      padding: 80px 40px;
+      max-width: 900px;
+      margin: 0 auto;
+      box-shadow: 12px 12px 0px rgba(139, 92, 246, 0.3);
+    }
+
+    .cta h2 {
+      margin-bottom: 24px;
+      color: var(--purple);
+    }
+
+    .cta p {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      margin-bottom: 40px;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--bg-primary);
+      padding: 40px 0;
+      text-align: center;
+      border-top: 2px solid var(--bg-tertiary);
+    }
+
+    footer p {
+      color: var(--text-secondary);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 3rem;
+      }
+      
+      .nav-container {
+        flex-direction: column;
+        gap: 20px;
+      }
+      
+      .services-grid,
+      .stats {
+        grid-template-columns: 1fr;
+      }
+      
+      .btn-secondary {
+        margin-left: 0;
+        margin-top: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo">YOUR<span style="color: #ec4899;">NAME</span></div>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/services">Services</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero container">
+    <div class="hero-content">
+      <h1>FULL-STACK WEB DEVELOPER</h1>
+      <p>
+        Building scalable web applications with modern technologies. Specialized in Node.js, 
+        Express, MongoDB, and React. From concept to deployment, I create solutions that work.
+      </p>
+      
+      <div class="tech-stack">
+        <span class="tech-badge">Node.js</span>
+        <span class="tech-badge">Express</span>
+        <span class="tech-badge">MongoDB</span>
+        <span class="tech-badge">React</span>
+        <span class="tech-badge">Socket.io</span>
+        <span class="tech-badge">EJS</span>
+      </div>
+      
+      <a href="/services" class="btn btn-primary">View Services</a>
+      <a href="/contact" class="btn btn-secondary">Hire Me</a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about">
+    <div class="container">
+      <h2 class="section-title">ABOUT ME</h2>
+      <div class="about-content">
+        <p>
+          I'm a full-stack developer based in Visakhapatnam, India, with expertise in building 
+          complete web applications from scratch. I specialize in the MERN stack and have 
+          successfully delivered multiple projects for clients across different industries.
+        </p>
+        <p>
+          My approach combines clean code, modern design principles, and scalable architecture 
+          to create applications that not only look great but perform exceptionally well.
+        </p>
+      </div>
+      
+      <div class="stats">
+        <div class="stat-box">
+          <div class="stat-number">15+</div>
+          <div class="stat-label">Projects Completed</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">10+</div>
+          <div class="stat-label">Happy Clients</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">3+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Services -->
+  <section class="quick-services container">
+    <h2 class="section-title">POPULAR SERVICES</h2>
+    
+    <div class="services-grid">
+      <div class="service-card">
+        <h3>FULL-STACK WEB APP</h3>
+        <p>
+          Complete web application with Node.js backend, MongoDB database, 
+          and modern frontend (React/EJS). Perfect for business platforms.
+        </p>
+        <div class="price">₹25,000+</div>
+      </div>
+      
+      <div class="service-card">
+        <h3>REAL-TIME FEATURES</h3>
+        <p>
+          Add Socket.io chat, notifications, live updates to your application. 
+          Real-time communication for better user engagement.
+        </p>
+        <div class="price">₹15,000+</div>
+      </div>
+      
+      <div class="service-card">
+        <h3>PAYMENT INTEGRATION</h3>
+        <p>
+          Razorpay payment gateway integration with secure transactions, 
+          order management, and invoice generation.
+        </p>
+        <div class="price">₹10,000+</div>
+      </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 60px;">
+      <a href="/services" class="btn btn-primary">View All Services</a>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta">
+    <div class="container">
+      <div class="cta-box">
+        <h2>READY TO START YOUR PROJECT?</h2>
+        <p>
+          Let's discuss your requirements and build something amazing together. 
+          Get a free consultation and project quote.
+        </p>
+        <a href="/contact" class="btn btn-primary">Get In Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Your Name. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
